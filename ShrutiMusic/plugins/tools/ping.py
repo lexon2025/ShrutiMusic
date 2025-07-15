@@ -21,54 +21,30 @@
 
 
 from datetime import datetime
+
 from pyrogram import filters
 from pyrogram.types import Message
+
 from ShrutiMusic import app
-from ShrutiMusic.misc import SUDOERS
-from ShrutiMusic.utils.ping import bot_sys_stats
+from ShrutiMusic.core.call import Aviax
 from ShrutiMusic.utils import bot_sys_stats
+from ShrutiMusic.utils.decorators.language import language
 from ShrutiMusic.utils.inline import supp_markup
-from ShrutiMusic.utils.ping import Aviax
-from ShrutiMusic.platforms.Carbon import CarbonAPI
-from config import BANNED_USERS
-from strings.helpers import language
+from config import BANNED_USERS, PING_IMG_URL
+
 
 @app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
 @language
 async def ping_com(client, message: Message, _):
-    temp = await message.reply("⚡ <b>Pinging...</b>")
-
-    # Measure latency
     start = datetime.now()
+    response = await message.reply_photo(
+        photo=PING_IMG_URL,
+        caption=_["ping_1"].format(app.mention),
+    )
     pytgping = await Aviax.ping()
-    uptime, cpu, ram, disk = await bot_sys_stats()
-    latency = (datetime.now() - start).microseconds / 1000
-
-    # Carbon Text
-    carbon_text = f"""
-╭⎯⎯⎯⎯⎯⎯⎯⎯〔 ⚙️ ᴘɪɴɢ ʀᴇᴘᴏʀᴛ 〕⎯⎯⎯⎯⎯⎯⎯⎯╮
-
-├⏱ ᴘʏ-ᴛɢ ᴘɪɴɢ: {pytgping} ms
-├⚡ ʙᴏᴛ ʟᴀᴛᴇɴᴄʏ: {latency:.2f} ms
-├🧠 ʀᴀᴍ ᴜsᴀɢᴇ: {ram}
-├💾 ᴅɪsᴋ ᴜsᴀɢᴇ: {disk}
-├🖥️ ᴄᴘᴜ ᴜsᴀɢᴇ: {cpu}
-├🔋 ᴜᴘᴛɪᴍᴇ: {uptime}
-
-╰⎯⎯⎯⎯⎯⎯〔 {app.mention} 〕⎯⎯⎯⎯⎯⎯╯
-"""
-
-    # Generate Carbon Image
-    try:
-        carbon = CarbonAPI()
-        image_path = await carbon.generate(carbon_text, message.from_user.id)
-    except Exception as e:
-        await temp.edit("❌ Failed to generate carbon image.")
-        return
-
-    await temp.delete()
-    await message.reply_photo(
-        photo=image_path,
-        caption=f"✨ <b>ᴘɪɴɢ ʀᴇᴘᴏʀᴛ ɪs ʀᴇᴀᴅʏ,</b> {message.from_user.mention}!",
-        reply_markup=supp_markup(_)
+    UP, CPU, RAM, DISK = await bot_sys_stats()
+    resp = (datetime.now() - start).microseconds / 1000
+    await response.edit_text(
+        _["ping_2"].format(resp, app.mention, UP, RAM, CPU, DISK, pytgping),
+        reply_markup=supp_markup(_),
     )
