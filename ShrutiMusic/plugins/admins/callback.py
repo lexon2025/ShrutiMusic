@@ -75,6 +75,90 @@ async def show_help_page1(client, callback_query: CallbackQuery):
         reply_markup=help_pannel_page1(_, START=True)
     )
 
+# Callback handler for about page - only changes buttons, keeps same message
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup
+
+from ShrutiMusic.utils.inline.start import about_panel
+from strings import get_string
+from config import BANNED_USERS
+
+@app.on_callback_query(filters.regex("about_page") & ~BANNED_USERS)
+async def about_cb(client, callback_query):
+    try:
+        lang = "en"
+        _ = get_string(lang)
+
+        await callback_query.answer()
+        await callback_query.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(about_panel(_))
+        )
+    except Exception as e:
+        await callback_query.answer(f"❌ Error: {e}", show_alert=True)
+
+
+
+from pyrogram import filters
+from pyrogram.types import CallbackQuery
+from ShrutiMusic import app
+from ShrutiMusic.core.call import Aviax
+from ShrutiMusic.utils import bot_sys_stats
+import time, psutil
+
+def get_readable_time(seconds: int) -> str:
+    count = 0
+    ping_time = ""
+    time_list = []
+    time_suffix_list = ["s", "m", "h", "d"]
+
+    while count < 4:
+        count += 1
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
+        if seconds == 0 and result == 0:
+            break
+        time_list.append(int(result))
+        seconds = int(remainder)
+
+    for x in range(len(time_list)):
+        ping_time = str(time_list[x]) + time_suffix_list[x] + " " + ping_time
+    return ping_time.strip()
+
+@app.on_callback_query(filters.regex("ping_status"))
+async def ping_status_callback(client, callback_query: CallbackQuery):
+    start = time.time()
+    
+    try:
+        pytgping = await Aviax.ping()
+        UP, CPU, RAM, DISK = await bot_sys_stats()
+    except Exception:
+        UP = "Unknown"
+        CPU = psutil.cpu_percent()
+        RAM = psutil.virtual_memory().percent
+        DISK = psutil.disk_usage('/').percent
+    
+    end = time.time()
+    ping = round((end - start) * 1000)
+
+    if ping < 100:
+        color = "🟢"
+    elif ping < 300:
+        color = "🟡"
+    else:
+        color = "🔴"
+
+    popup_msg = (
+        f"📡 ᴘɪɴɢ: {ping}ms {color}\n"
+        f"⏱ ᴜᴘᴛɪᴍᴇ: {UP}\n"
+        f"💾 ᴅɪꜱᴋ: {DISK}%\n"
+        f"📈 ᴍᴇᴍᴏʀʏ: {RAM}%\n"
+        f"🖥 ᴄᴘᴜ: {CPU}%"
+    )
+
+    await callback_query.answer(
+        text=popup_msg,
+        show_alert=True
+    )
+
 
 @app.on_callback_query(filters.regex("help_page_2"))
 async def show_help_page2(client, callback_query: CallbackQuery):
