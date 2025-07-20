@@ -349,3 +349,6 @@ HELP_34 = """ 🏷️ <b>WISH TAG HELP</b> 🌟
 • /taghelp - Show this help message 📖
 
 <b>Note:</b> Only one tagging session can run per chat at a time 📌 """
+
+HELP_35 = """ <b>User Welcome Message</b>
+• /welcome on/off: Enable or Disable welcome message . """

@@ -134,6 +134,7 @@ def help_pannel_page4(_, START: Union[bool, int] = None):
             ],
             [
                 InlineKeyboardButton(text=_["H_B_34"], callback_data="help_callback hb34"),
+                InlineKeyboardButton(text=_["H_B_35"], callback_data="help_callback hb35"),
             ],   
             [
                 InlineKeyboardButton(

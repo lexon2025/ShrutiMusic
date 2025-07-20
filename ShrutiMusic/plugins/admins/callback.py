@@ -75,7 +75,30 @@ async def show_help_page1(client, callback_query: CallbackQuery):
         reply_markup=help_pannel_page1(_, START=True)
     )
 
-# Callback handler for about page - only changes buttons, keeps same message
+@app.on_callback_query(filters.regex("fork_repo"))
+async def fork_repo_callback(client, query):
+    await query.message.edit_text(
+        text=(
+            "✨ <b>ʙᴜɪʟᴅ Yᴏᴜʀ Oᴡɴ ᴍᴜsɪᴄ ʙᴏᴛ 🎧</b>\n\n"
+            "🚀 ʀᴇᴀᴅʏ ᴛᴏ ʟᴀᴜɴᴄʜ ʏᴏᴜʀ ᴏᴡɴ ʙᴏᴛ?\n"
+            "ғᴏʀᴋ ᴛʜᴇ ʀᴇᴘᴏ ᴀɴᴅ ᴅᴇᴘʟᴏʏ ɪɴ sᴇᴄᴏɴᴅs.\n\n"
+            "🔧 <b>Cᴜsᴛᴏᴍɪᴢᴇ ɪᴛ. Dᴇᴘʟᴏʏ ɪᴛ. Vɪʙᴇ ᴡɪᴛʜ ɪᴛ 🔥</b>"
+        ),
+        disable_web_page_preview=True,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("🚀 Fᴏʀᴋ Rᴇᴘᴏ", url="https://github.com/NoxxOP/ShrutiMusic/fork"),
+                    InlineKeyboardButton("⚡ Hᴇʀᴏᴋᴜ Dᴇᴘʟᴏʏ", url="https://dashboard.heroku.com/new?template=https://github.com/NoxxOP/ShrutiMusic")
+                ],
+                [
+                    InlineKeyboardButton("🔙 Bᴀᴄᴋ", callback_data="settingsback_helper")
+                ]
+            ]
+        )
+    )
+
+
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup
 
@@ -83,15 +106,34 @@ from ShrutiMusic.utils.inline.start import about_panel
 from strings import get_string
 from config import BANNED_USERS
 
+
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup
+from ShrutiMusic.utils.inline.start import owner_panel  # Import owner_panel function
+from strings import get_string
+from config import BANNED_USERS
+from ShrutiMusic import app
+
 @app.on_callback_query(filters.regex("about_page") & ~BANNED_USERS)
 async def about_cb(client, callback_query):
     try:
         lang = "en"
         _ = get_string(lang)
-
         await callback_query.answer()
         await callback_query.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(about_panel(_))
+        )
+    except Exception as e:
+        await callback_query.answer(f"❌ Error: {e}", show_alert=True)
+
+@app.on_callback_query(filters.regex("owner_page") & ~BANNED_USERS)
+async def owner_page_cb(client, callback_query):
+    try:
+        lang = "en"
+        _ = get_string(lang)
+        await callback_query.answer()
+        await callback_query.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(owner_panel(_))
         )
     except Exception as e:
         await callback_query.answer(f"❌ Error: {e}", show_alert=True)
@@ -103,7 +145,7 @@ from pyrogram.types import CallbackQuery
 from ShrutiMusic import app
 from ShrutiMusic.core.call import Aviax
 from ShrutiMusic.utils import bot_sys_stats
-import time, psutil
+import time, psutil, asyncio
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -125,20 +167,26 @@ def get_readable_time(seconds: int) -> str:
 
 @app.on_callback_query(filters.regex("ping_status"))
 async def ping_status_callback(client, callback_query: CallbackQuery):
-    start = time.time()
     
+    loading = await callback_query.message.reply_text("🔄 ᴘɪɴɢɪɴɢ...")
+
+    start = time.time()
     try:
-        pytgping = await Aviax.ping()
+        await Aviax.ping()
+    except:
+        pass
+    end = time.time()
+    ping = round((end - start) * 1000)
+
+    try:
         UP, CPU, RAM, DISK = await bot_sys_stats()
     except Exception:
         UP = "Unknown"
         CPU = psutil.cpu_percent()
         RAM = psutil.virtual_memory().percent
         DISK = psutil.disk_usage('/').percent
-    
-    end = time.time()
-    ping = round((end - start) * 1000)
 
+    # Step 4: Select Ping Color
     if ping < 100:
         color = "🟢"
     elif ping < 300:
@@ -146,7 +194,7 @@ async def ping_status_callback(client, callback_query: CallbackQuery):
     else:
         color = "🔴"
 
-    popup_msg = (
+    final_text = (
         f"📡 ᴘɪɴɢ: {ping}ms {color}\n"
         f"⏱ ᴜᴘᴛɪᴍᴇ: {UP}\n"
         f"💾 ᴅɪꜱᴋ: {DISK}%\n"
@@ -154,10 +202,10 @@ async def ping_status_callback(client, callback_query: CallbackQuery):
         f"🖥 ᴄᴘᴜ: {CPU}%"
     )
 
-    await callback_query.answer(
-        text=popup_msg,
-        show_alert=True
-    )
+    await loading.edit_text(final_text)
+    
+    await asyncio.sleep(8)
+    await loading.delete()
 
 
 @app.on_callback_query(filters.regex("help_page_2"))
