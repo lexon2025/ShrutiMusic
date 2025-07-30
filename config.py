@@ -66,6 +66,7 @@ GIT_TOKEN = os.getenv("GIT_TOKEN", None)
 SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/Disney_storeDan")
 SUPPORT_GROUP = os.getenv("SUPPORT_GROUP", "https://t.me/musik_supportdan")
 BUYUSERBOT = os.getenv("BUYUSERBOT", "https://t.me/WildanUltraPrem_bot")
+MAVIASTORY = os.getenv("MAVIASTORY", "https://t.me/MaviaStoryChannel")
 DONATE = os.getenv("DONATE", "https://link.dana.id/qr/6l85aa18")
 PRIVACY_LINK = os.getenv("PRIVACY_LINK", "https://graph.org/Privacy-Policy-05-01-30")
 
