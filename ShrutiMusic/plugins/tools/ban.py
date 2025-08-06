@@ -773,3 +773,12 @@ async def get_group_link(client, group_id):
     else:
         invite_link = await client.export_chat_invite_link(group_id)
         return invite_link
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================

@@ -49,3 +49,12 @@ async def logger(client, message, _):
 async def logger(client, message, _):
     await message.reply_document("cookies/logs.csv")
     await message.reply_text("Please check given file to cookies file choosing logs...")
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================

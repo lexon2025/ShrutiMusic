@@ -352,3 +352,12 @@ HELP_34 = """ 🏷️ <b>WISH TAG HELP</b> 🌟
 
 HELP_35 = """ <b>User Welcome Message</b>
 • /welcome on/off: Enable or Disable welcome message . """
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================

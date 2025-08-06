@@ -179,3 +179,12 @@ async def helper_cb(client, CallbackQuery, _):
     elif cb == "hb35":
         await CallbackQuery.edit_message_text(helpers.HELP_35, reply_markup=get_keyboard_for(cb))
 
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================

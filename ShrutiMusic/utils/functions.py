@@ -324,3 +324,12 @@ async def time_converter(message: Message, time_value: str) -> datetime:
     else:
         return await message.reply_text("Incorrect time specified.")
     return temp_time
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================

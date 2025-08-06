@@ -41,3 +41,12 @@ async def pause_admin(cli, message: Message, _, chat_id):
     await message.reply_text(
         _["admin_2"].format(message.from_user.mention), reply_markup=close_markup(_)
     )
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================

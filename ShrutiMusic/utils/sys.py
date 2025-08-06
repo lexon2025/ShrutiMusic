@@ -35,3 +35,12 @@ async def bot_sys_stats():
     RAM = f"{psutil.virtual_memory().percent}%"
     DISK = f"{psutil.disk_usage('/').percent}%"
     return UP, CPU, RAM, DISK
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================

@@ -50,3 +50,12 @@ async def mkdwnhelp(_, m: Message):
             MARKDOWN, parse_mode=ParseMode.HTML, disable_web_page_preview=True
         )
     return
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================

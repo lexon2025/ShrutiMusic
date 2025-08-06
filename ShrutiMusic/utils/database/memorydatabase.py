@@ -669,3 +669,12 @@ async def get_video_bitrate(chat_id: int) -> str:
         "SD_480p": VideoQuality.SD_480p,
         "SD_360p": VideoQuality.SD_360p,
     }.get(mode, VideoQuality.SD_480p)
+
+
+# ©️ Copyright Reserved - @NoxxOP  Nand Yaduwanshi
+
+# ===========================================
+# ©️ 2025 Nand Yaduwanshi (aka @NoxxOP)
+# 🔗 GitHub : https://github.com/NoxxOP/ShrutiMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================
