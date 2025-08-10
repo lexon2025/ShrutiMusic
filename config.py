@@ -40,7 +40,7 @@ API_HASH = os.getenv("API_HASH")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 OWNER_ID = int(os.getenv("OWNER_ID", None))
 OWNER_USERNAME = os.getenv("OWNER_USERNAME", "mhmdwldnnnn")
-BOT_USERNAME = os.getenv("BOT_USERNAME", "wildanmusik_bot")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "Capricorn_MusicBot")
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # 🛠️ Database & Deployment Configs
@@ -111,10 +111,10 @@ AUTO_LEAVING_ASSISTANT = bool(os.getenv("AUTO_LEAVING_ASSISTANT", False))
 # 🖼️ Image URLs (Can be customized)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-START_IMG_URL = os.getenv("START_IMG_URL", "https://files.catbox.moe/7q8bfg.jpg")
-PING_IMG_URL = os.getenv("PING_IMG_URL", "https://files.catbox.moe/eehxb4.jpg")
-PLAYLIST_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
-STATS_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
+START_IMG_URL = os.getenv("START_IMG_URL", "https://files.catbox.moe/gxnfcx.jpg")
+PING_IMG_URL = os.getenv("PING_IMG_URL", "https://files.catbox.moe/gxnfcx.jpg")
+PLAYLIST_IMG_URL = "https://files.catbox.moe/gxnfcx.jpg"
+STATS_IMG_URL = "https://files.catbox.moe/gxnfcx.jpg"
 TELEGRAM_AUDIO_URL = "https://files.catbox.moe/eehxb4.jpg"
 TELEGRAM_VIDEO_URL = "https://files.catbox.moe/eehxb4.jpg"
 STREAM_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
