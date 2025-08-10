@@ -88,8 +88,8 @@
       "required": false
     },
     "MAVIASTORY": {
-      "description": "Your GitHub profile link",
-      "value": "https://t.me/MaviaStoryChannel:",
+      "description": "Your support channel link",
+      "value": "https://t.me/MaviaStoryChannel",
       "required": false
     },
     "DONATE": {
